@@ -1,22 +1,13 @@
 pipeline {
-    agent any
+    agent { label 'docker-build' }
 
     stages {
-        stage('Checkout') {
+        stage('Verify Agent') {
             steps {
-                echo 'GitHub source code retrieved successfully'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                echo 'Build stage completed successfully'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                echo 'Test stage completed successfully'
+                sh 'hostname'
+                sh 'whoami'
+                sh 'pwd'
+                sh 'git --version'
             }
         }
     }
